@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// Patient class
 class Patient {
     private int patientId;
     private String name;
@@ -25,7 +24,6 @@ class Patient {
         this.medicalHistory = new ArrayList<>();
     }
 
-    // Getters and setters
     public int getPatientId() { return patientId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -50,7 +48,6 @@ class Patient {
     }
 }
 
-// Doctor class
 class Doctor {
     private int doctorId;
     private String name;
@@ -68,7 +65,6 @@ class Doctor {
         this.patientIds = new ArrayList<>();
     }
 
-    // Getters and setters
     public int getDoctorId() { return doctorId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -93,7 +89,6 @@ class Doctor {
     }
 }
 
-// Appointment class
 class Appointment {
     private int appointmentId;
     private int patientId;
@@ -111,7 +106,6 @@ class Appointment {
         this.notes = "";
     }
 
-    // Getters and setters
     public int getAppointmentId() { return appointmentId; }
     public int getPatientId() { return patientId; }
     public int getDoctorId() { return doctorId; }
@@ -132,7 +126,6 @@ class Appointment {
     }
 }
 
-// Main Hospital Management System class
 public class HospitalManagementSystem {
     private Map<Integer, Patient> patients;
     private Map<Integer, Doctor> doctors;
@@ -151,17 +144,15 @@ public class HospitalManagementSystem {
     }
 
     private void initializeSampleData() {
-        // Add sample doctors
+
         addDoctor("Dr. Smith", "Cardiology", "555-0101");
         addDoctor("Dr. Johnson", "Neurology", "555-0102");
         addDoctor("Dr. Williams", "Pediatrics", "555-0103");
         
-        // Add sample patients
         addPatient("John Doe", 35, "Male", "555-1001", "123 Main St");
         addPatient("Jane Smith", 28, "Female", "555-1002", "456 Oak Ave");
     }
 
-    // Patient management methods
     public void addPatient(String name, int age, String gender, String phoneNumber, String address) {
         Patient patient = new Patient(nextPatientId++, name, age, gender, phoneNumber, address);
         patients.put(patient.getPatientId(), patient);
@@ -195,7 +186,6 @@ public class HospitalManagementSystem {
         }
     }
 
-    // Doctor management methods
     public void addDoctor(String name, String specialization, String phoneNumber) {
         Doctor doctor = new Doctor(nextDoctorId++, name, specialization, phoneNumber);
         doctors.put(doctor.getDoctorId(), doctor);
@@ -225,7 +215,6 @@ public class HospitalManagementSystem {
         }
     }
 
-    // Appointment management methods
     public void scheduleAppointment(int patientId, int doctorId, String dateTimeStr) {
         if (!patients.containsKey(patientId)) {
             System.out.println("Patient not found with ID: " + patientId);
@@ -243,7 +232,6 @@ public class HospitalManagementSystem {
             Appointment appointment = new Appointment(nextAppointmentId++, patientId, doctorId, appointmentDateTime);
             appointments.put(appointment.getAppointmentId(), appointment);
             
-            // Assign patient to doctor
             doctors.get(doctorId).assignPatient(patientId);
             
             System.out.println("Appointment scheduled successfully with ID: " + appointment.getAppointmentId());
@@ -273,7 +261,6 @@ public class HospitalManagementSystem {
         }
     }
 
-    // Medical records management
     public void addMedicalRecord(int patientId, String record) {
         Patient patient = patients.get(patientId);
         if (patient != null) {
@@ -284,7 +271,6 @@ public class HospitalManagementSystem {
         }
     }
 
-    // Main menu system
     public void displayMenu() {
         System.out.println("\n=== HOSPITAL MANAGEMENT SYSTEM ===");
         System.out.println("1. Patient Management");
@@ -305,7 +291,7 @@ public class HospitalManagementSystem {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
